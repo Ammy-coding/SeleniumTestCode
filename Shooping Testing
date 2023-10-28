@@ -1,0 +1,38 @@
+
+from selenium.webdriver.support.ui import Select
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+import time
+
+serv_obj = Service(executable_path="C:\Driver\chromedriver-win64\chromedriver.exe")
+driver=webdriver.Chrome(service=serv_obj)
+driver.get("https://www.amazon.in/")
+
+
+
+driver.maximize_window()
+
+element=driver.find_element(By.ID,"searchDropdownBox")
+drp=Select (element)
+drp.select_by_visible_text('Amazon Devices')
+driver.find_element(By.XPATH,'//*[@id="twotabsearchtextbox"]').send_keys("alexa")
+driver.find_element(By.XPATH,"(//input[@id='nav-search-submit-button'])[1]").click()
+time.sleep(3)
+
+driver.find_element(By.XPATH,"//img[@alt='Echo Dot (4th Gen, 2020 release) with clock | Next generation smart speaker with powerful bass, LED display and Alexa (Blue)']").click()
+driver.execute_script("window.scrollby(0,700)")
+time.sleep(5)
+
+# -----------------------------------------------------------------------------------------------------
+
+
+driver.quit()
+
+
+
+
+
+
+
+
